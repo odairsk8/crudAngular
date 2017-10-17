@@ -1,0 +1,7 @@
+.navbar-btn {
+    margin-left: 3px;
+}
+
+.navbar-btn:hover{
+    border: 1px solid rgba(255,255,255, .4);
+}

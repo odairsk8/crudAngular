@@ -1,0 +1,209 @@
+<div id="content">
+
+  <div class="row">
+
+    <article class="col-sm-12">
+
+      <div class="navbar navbar-forms">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li>
+              <a [routerLink]="['/customer']">Back</a>
+            </li>
+            <li *ngIf="formMode != 'form-delete'">
+              <button style="cursor:pointer" class="btn btn-save btn-default navbar-btn" form="customer-form"> Save </button>
+            </li>
+            <li *ngIf="formMode != 'form-new'">
+              <button style="cursor:pointer" class="btn btn-default navbar-btn" (click)='delete()'> Delete </button>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+
+    </article>
+  </div>
+
+  <div class="row" *ngIf="formMode == 'form-delete'">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="alert alert-danger" role="alert">
+        Deleting
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="errors.length > 0">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="alert alert-danger" role="alert">
+        <ul>
+          <li *ngFor="let error of errors">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <sa-widgets-grid>
+
+    <!-- START ROW -->
+
+    <div class="row">
+
+      <!-- NEW COL START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <sa-widget [editbutton]="false" [custombutton]="false">
+
+          <header>
+            <span class="widget-icon">
+              <i class="fa fa-edit"></i>
+            </span>
+
+            <h2> Customer Form </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+              <form id="customer-form" [formGroup]="form" (ngSubmit)="save()" class="smart-form" novalidate="novalidate">
+
+                <fieldset>
+
+                  <div class="row">
+                    <section class="col col-3">
+                      <label for="customerId" class="input">
+                        <i class="icon-prepend fa fa-key"></i>
+                        <input type="text" formControlName="customerId" name="customerId" />
+                      </label>
+                    </section>
+                  </div>
+
+                  <div class="row">
+                    <section class="col col-6">
+                      <label for="name" class="input">
+                        <i class="icon-prepend fa fa-user"></i>
+                        <input type="text" name="name" formControlName="name" name="name" placeholder="Customer name" />
+                      </label>
+                    </section>
+
+                    <section class="col col-6">
+                      <label for="cpfCnpj" class="input">
+                        <i class="icon-prepend fa fa-file"></i>
+                        <input type="text" name="cpfCnpj" formControlName="cpfCnpj" placeholder="Cpf/Cnpj" />
+                      </label>
+                    </section>
+                  </div>
+
+                  <div class="row">
+                    <section class="col col-6">
+                      <label for="email" class="input">
+                        <i class="icon-prepend fa fa-envelope-o"></i>
+                        <input type="email" name="email" formControlName="email" placeholder="E-mail" />
+                      </label>
+                    </section>
+                  </div>
+
+
+                  <div class="row">
+
+                    <section class="col col-6">
+                      <label for="phone1" class="input">
+                        <i class="icon-prepend fa fa-phone"></i>
+                        <input type="text" name="phone1" formControlName="phone1" placeholder="Phone" />
+                      </label>
+                    </section>
+
+                    <section class="col col-6">
+                      <label for="phone2" class="input">
+                        <i class="icon-prepend fa fa-phone"></i>
+                        <input type="text" name="phone2" formControlName="phone2" placeholder="Phone" />
+                      </label>
+                    </section>
+
+                  </div>
+
+                  <section>
+                    <label for="comment" class="textarea">
+                      <i class="icon-prepend fa fa-comment"></i>
+                      <textarea rows="3" type="textarea" formControlName="comment" name="comment" placeholder="Comment"></textarea>
+                    </label>
+                  </section>
+
+                </fieldset>
+
+                <fieldset formGroupName="address">
+
+                  <div class="row">
+
+                    <section class="col col-8">
+                      <label for="address" class="input">
+                        <i class="icon-prepend fa fa-map-marker"></i>
+                        <input type="text" formControlName="address" name="address" placeholder="Address" />
+                      </label>
+                    </section>
+
+                    <section class="col col-4">
+                      <label for="postcode" class="input">
+                        <i class="icon-prepend fa fa-map-marker"></i>
+                        <input type="text" formControlName="postcode" name="postcode" placeholder="Post code" />
+                      </label>
+                    </section>
+
+                  </div>
+
+                  <div class="row">
+
+                    <section class="col col-6">
+                      <label for="city" class="input">
+                        <i class="icon-prepend fa fa-map-marker"></i>
+                        <input type="text" formControlName="city" name="city" placeholder="City" />
+                      </label>
+                    </section>
+
+                    <section class="col col-6">
+                      <label for="state" class="input">
+                        <i class="icon-prepend fa fa-map-marker"></i>
+                        <input type="text" formControlName="state" name="address.state" placeholder="State" />
+                      </label>
+                    </section>
+
+                  </div>
+
+                  <section>
+                    <label for="addressComment" class="textarea">
+                      <i class="icon-prepend fa fa-comment"></i>
+                      <textarea rows="3" type="textarea" formControlName="comment" name="addressComment" placeholder="Comment"></textarea>
+                    </label>
+                  </section>
+
+                </fieldset>
+
+
+              </form>
+
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </sa-widget>
+        <!-- end widget -->
+
+
+      </article>
+
+    </div>
+
+  </sa-widgets-grid>
+
+</div>

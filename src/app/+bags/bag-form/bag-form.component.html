@@ -1,0 +1,144 @@
+<div id="content">
+
+  <div class="row">
+
+    <article class="col-sm-12">
+
+      <div class="navbar navbar-forms">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li>
+              <a [routerLink]="['/bag']">Back</a>
+            </li>
+            <li *ngIf="formMode != 'form-delete'">
+              <button style="cursor:pointer" class="btn btn-save btn-default navbar-btn" form="bag-form"> Save </button>
+            </li>
+            <li *ngIf="formMode != 'form-new'">
+              <button style="cursor:pointer" class="btn btn-default navbar-btn" (click)='delete()'> Delete </button>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      
+    </article>
+  </div>
+
+  <div class="row" *ngIf="formMode == 'form-delete'">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="alert alert-danger" role="alert">
+        Deleting
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="errors.length > 0">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="alert alert-danger" role="alert">
+        <ul>
+          <li *ngFor="let error of errors">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <sa-widgets-grid>
+    <!-- START ROW -->
+    <div class="row">
+      <!-- NEW COL START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+        <!-- Widget ID (each widget will need unique ID)-->
+        <sa-widget [editbutton]="false" [custombutton]="false">
+          <header>
+            <span class="widget-icon">
+              <i class="fa fa-edit"></i>
+            </span>
+            <h2>Bag Form </h2>
+          </header>
+          <!-- widget div-->
+          <div>
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+              <form id="bag-form" (ngSubmit)="save()" class="smart-form" [formGroup]="bagForm" novalidate="novalidate">
+                <header>
+                  Bag Info
+                </header>
+
+                <fieldset>
+                  <div class="row">
+                    <section class="col col-4">
+                      <label class="input">
+                        <i class="icon-append fa fa-key"></i>
+                        <input type="text" name="bagId" formControlName="bagId" placeholder="Bag Id" disabled />
+                      </label>
+                    </section>
+                    <section class="col col-8">
+                      <label [ngClass]="bagForm.controls.name.invalid && bagForm.controls.name.touched ? 'input state-error' : 'input'">
+                        <i class="icon-append fa fa-shopping-bag"></i>
+                        <input type="text" name="name" formControlName="name" placeholder="Name" />
+                        <div class="note note-error" *ngIf="bagForm && !bagForm.controls.name.valid && bagForm.controls.name.touched && bagForm.controls.name.errors">
+                          <div *ngIf="bagForm.controls.name.errors.required ">
+                            Field required
+                          </div>
+                          <div *ngIf="bagForm.controls.name.errors.minlength ">
+                            minimum length is 3 characters
+                          </div>
+                          <div *ngIf="bagForm.controls.name.errors.maxlength ">
+                            maximum length is 25 characters
+                          </div>
+                          <div *ngIf="bagForm.controls.name.errors.nameIsForbidden ">
+                            Name already in use
+                          </div>
+                        </div>
+
+                      </label>
+                    </section>
+                  </div>
+                  <section>
+                    <label class="input" [ngClass]="bagForm.controls.shortDescription.invalid && bagForm.controls.shortDescription.touched ? 'input state-error' : 'input'">
+                      <i class="icon-append fa fa-pencil"></i>
+                      <input type="text" name="shortDescription" formControlName="shortDescription" placeholder="Shor Description" />
+                      <div class="note note-error" *ngIf="bagForm && !bagForm.controls.shortDescription.valid && bagForm.controls.shortDescription.touched && bagForm.controls.shortDescription.errors">
+                        <div *ngIf="bagForm.controls.shortDescription.errors.required ">
+                          Field required
+                        </div>
+                        <div *ngIf="bagForm.controls.shortDescription.errors.maxlength ">
+                          maximum length is 250 characters
+                        </div>
+                      </div>
+                    </label>
+                  </section>
+                </fieldset>
+
+                <fieldset>
+                  <section>
+                    <label class="textarea" [ngClass]="bagForm.controls.longDescription.invalid && bagForm.controls.longDescription.touched ? 'input state-error' : 'input'">
+                      <i class="icon-append fa fa-comment"></i>
+                      <textarea rows="5" name="longDescription" formControlName="longDescription" placeholder="Full bag description"></textarea>
+                      <div class="note note-error" *ngIf="bagForm && !bagForm.controls.longDescription.valid && bagForm.controls.longDescription.touched && bagForm.controls.longDescription.errors">
+                        <div *ngIf="bagForm.controls.longDescription.errors.maxlength ">
+                          maximum length is 500 characters
+                        </div>
+                      </div>
+                    </label>
+                  </section>
+                </fieldset>
+
+              </form>
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </sa-widget>
+        <!-- end widget -->
+      </article>
+      <!-- END COL -->
+    </div>
+    <!-- END ROW -->
+  </sa-widgets-grid>
+</div>

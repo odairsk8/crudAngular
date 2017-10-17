@@ -1,0 +1,82 @@
+<div id="content">
+
+  <div class="row">
+
+    <article class="col-sm-12">
+
+      <div class="navbar navbar-forms">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li>
+              <a [routerLink]="['/customer']">Back</a>
+            </li>
+            <li *ngIf="formMode != 'form-delete'">
+              <button style="cursor:pointer" class="btn btn-save btn-default navbar-btn" (click)="save()"> Save </button>
+            </li>
+            <li *ngIf="formMode != 'form-new'">
+              <button style="cursor:pointer" class="btn btn-default navbar-btn" (click)='delete()'> Delete </button>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+
+    </article>
+  </div>
+
+  <sa-widgets-grid>
+    <!-- START ROW -->
+    <div class="row">
+      <!-- NEW COL START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+        <!-- Widget ID (each widget will need unique ID)-->
+        <sa-widget [editbutton]="false" [custombutton]="false">
+          <header>
+            <span class="widget-icon">
+              <i class="fa fa-edit"></i>
+            </span>
+            <h2> Order Form </h2>
+          </header>
+          <!-- widget div-->
+          <div>
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+              <app-order-form></app-order-form>
+            </div>
+            <!-- end widget content -->
+          </div>
+          <!-- end widget div -->
+        </sa-widget>
+        <!-- end widget -->
+      </article>
+    </div>
+<!-- START ROW -->
+<div class="row">
+    <!-- NEW COL START -->
+    <article class="col-sm-12 col-md-12 col-lg-6">
+      <!-- Widget ID (each widget will need unique ID)-->
+      <sa-widget [editbutton]="false" [custombutton]="false">
+        <header>
+          <span class="widget-icon">
+            <i class="fa fa-edit"></i>
+          </span>
+          <h2> Order Items </h2>
+        </header>
+        <!-- widget div-->
+        <div>
+          <!-- widget content -->
+          <div class="widget-body no-padding">
+            <app-order-details-items></app-order-details-items>
+          </div>
+          <!-- end widget content -->
+        </div>
+        <!-- end widget div -->
+      </sa-widget>
+      <!-- end widget -->
+    </article>
+  </div>
+
+
+  </sa-widgets-grid>
+</div>

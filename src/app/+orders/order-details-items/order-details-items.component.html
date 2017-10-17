@@ -1,0 +1,145 @@
+<div class="row">
+
+  <article class="col-sm-12">
+
+    <div class="navbar navbar-forms" style="margin:3px;">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <button style="cursor:pointer" class="btn btn-default navbar-btn" (click)='lgModal.show()'> Add new </button>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+
+  </article>
+</div>
+
+
+<div class="row">
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <sa-datatable paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
+      <thead>
+        <tr>
+          <th data-hide="phone">ID</th>
+          <th data-class="expand">
+            <i class="fa fa-fw fa-bag text-muted hidden-md hidden-sm hidden-xs"></i>
+            Name
+          </th>
+          <th>Short Description</th>
+          <th>
+            <i class="fa fa-fw fa-pencil-square"></i>
+            #
+          </th>
+
+          <!-- <th data-hide="phone,tablet">
+                <i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i>
+                Zip
+              </th>
+              <th data-hide="phone,tablet">City</th>
+              <th data-hide="phone,tablet">
+                <i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i>
+                Date
+              </th> -->
+        </tr>
+      </thead>
+      <!-- <tbody>
+            <tr *ngFor="let bag of bagsList">
+              <td>{{ bag.bagId }}</td>
+              <td>{{ bag.name }}</td>
+              <td>{{ bag.shortDescription }}</td>
+              <td>
+                <a [routerLink]="[ '/bag/edit', bag.bagId ]">Edit</a> |
+                <a [routerLink]="[ '/bag/delete', bag.bagId ]">Delete</a>
+              </td>
+            </tr>
+          </tbody> -->
+    </sa-datatable>
+  </div>
+
+</div>
+
+ <!-- Modal -->
+
+
+ <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+ aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Large modal</h4>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Title" required>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" placeholder="Content" rows="5" required></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="category"> Category</label>
+          <select class="form-control" id="category">
+            <option>Articles</option>
+            <option>Tutorials</option>
+            <option>Freebies</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="tags"> Tags</label>
+          <input type="text" class="form-control" id="tags" placeholder="Tags">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="well well-sm well-primary">
+          <form class="form form-inline " role="form">
+            <div class="form-group">
+              <input type="text" class="form-control" value="" placeholder="Date" required>
+            </div>
+            <div class="form-group">
+              <select class="form-control">
+                <option>Draft</option>
+                <option>Published</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk"></span> Save
+              </button>
+              <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-eye-open"></span> Preview
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="lgModal.hide()">
+      Cancel
+    </button>
+    <button type="button" class="btn btn-primary">
+      Post Article
+    </button>
+  </div>
+</div>
+</div>
+</div>
